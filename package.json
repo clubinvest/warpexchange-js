@@ -56,6 +56,7 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "prettier --write",
+      "yarn audit",
       "git add"
     ]
   },
@@ -75,6 +76,7 @@
   "scripts": {
     "build": "tsc",
     "jest:watch": "jest --watch",
+    "prettier": "prettier --write '{.,./src/**}/*.ts'",
     "test": "jest",
     "watch": "tsc -w"
   }
