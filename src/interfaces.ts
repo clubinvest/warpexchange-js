@@ -1,3 +1,7 @@
+export interface IConfig {
+    token: string
+}
+
 export interface IGetNewAddress {}
 
 export interface ISplit {
