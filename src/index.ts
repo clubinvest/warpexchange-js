@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-import { IGetNewAddressParams } from './interfaces'
+import { IGetNewAddressParams, IConfig } from './interfaces'
+import { ENDPOINT } from './constants'
 
 let token: string = ''
 
@@ -18,11 +19,13 @@ const convertSatoshiToBTC = (value: number) => value / 100000000
 
 const getNewAddress = async (data: IGetNewAddressParams) => {
     try {
-        return api(token).post(END, data)
-    } catch (error) {}
+        return api(token).post(ENDPOINT.GETNEWADDRESS, data)
+    } catch (err) {
+        throw err
+    }
 }
 
-const warpExchange = (token: string) => {
+const warpExchange = ({ token }: IConfig) => {
     token = token
 
     return {
