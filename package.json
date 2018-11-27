@@ -1,15 +1,27 @@
 {
   "name": "warpexchange",
   "description": "WarpExchange Payment Gateway :) ",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "author": "lucasschoch",
   "bugs": {
     "url": "https://github.com/warp-exchange/rest-api/issues"
   },
   "dependencies": {
-    "unirest": "0.5.1"
+    "axios": "0.18.0"
+  },
+  "devDependencies": {
+    "husky": "1.2.0",
+    "lint-staged": "8.1.0",
+    "prettier": "1.15.2",
+    "tslint": "5.11.0",
+    "typescript": "3.1.6"
   },
   "homepage": "https://github.com/warp-exchange/rest-api#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "keywords": [
     "bitcoin",
     "criptocurrencies",
@@ -20,12 +32,28 @@
     "warp exchange"
   ],
   "license": "MIT",
-  "main": "WarpExchange.js",
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "main": "dist/src/index.js",
+  "prettier": {
+    "parser": "typescript",
+    "printWidth": 80,
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 4,
+    "trailingComma": "all"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/warp-exchange/rest-api.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "tsc -w"
   }
 }
