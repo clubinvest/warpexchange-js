@@ -1,66 +1,34 @@
 import axios from 'axios'
 
+import { IGetNewAddressParams } from './interfaces'
+
 let token: string = ''
-let marketplaceToken: string = ''
 
-const api = axios.create({
-    baseURL: 'https://api.warpexchange.com',
-    timeout: 1000,
-    headers: { 'X-Custom-Header': 'foobar' },
-})
+const api = (token: string) =>
+    axios.create({
+        baseURL: 'https://api.warpexchange.com',
+        timeout: 15000,
+        headers: {
+            'Content-Type': 'application/json',
+            authorizationToken: token,
+        },
+    })
 
-WarpExchangeTrade.prototype = {
-    execute: function(method, parameters, res, callback) {
-        var url_params = JSON.stringify(parameters)
-        //console.log(url_params);
+const convertSatoshiToBTC = (value: number) => value / 100000000
 
-        unirest
-            .post(BASE_URL + method)
-            .headers('authorizationToken', this.apiKey)
-            .headers('Content-Type', 'application/json')
-            .send(url_params)
-            .end(function(response) {
-                if (response.raw_body) {
-                    callback(null, JSON.parse(response.raw_body))
-                } else {
-                    callback(response)
-                }
-            })
-    },
+const getNewAddress = async (data: IGetNewAddressParams) => {
+    try {
+        return api(token).post(END, data)
+    } catch (error) {}
 }
 
-var WarpExchange = {
-    WarpExchangeTrade: new WarpExchangeTrade(),
+const warpExchange = (token: string) => {
+    token = token
 
-    getnewaddress: function(params, callback) {
-        //console.log(params);
-        this.WarpExchangeTrade.execute(
-            '/getnewaddress',
-            params,
-            console.log,
-            callback,
-        )
-    },
-    gettransactioninformation: function(params, callback) {
-        //console.log(params);
-        this.WarpExchangeTrade.execute(
-            '/gettransactioninformation',
-            params,
-            console.log,
-            callback,
-        )
-    },
-    gettransactions: function(callback) {
-        this.WarpExchangeTrade.execute(
-            '/gettransactions',
-            null,
-            console.log,
-            callback,
-        )
-    },
-    ToBTC: function(value, callback) {
-        return value / 100000000
-    },
+    return {
+        convertSatoshiToBTC,
+        getNewAddress,
+    }
 }
 
-module.exports = WarpExchange
+export default warpExchange
