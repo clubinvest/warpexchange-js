@@ -26,6 +26,23 @@
       "pre-commit": "lint-staged"
     }
   },
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
   "keywords": [
     "bitcoin",
     "criptocurrencies",
@@ -57,7 +74,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "jest:watch": "jest --watch",
+    "test": "jest",
     "watch": "tsc -w"
   }
 }
