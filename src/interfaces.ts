@@ -10,7 +10,7 @@ export interface IGetNewAddressData {
     network: string
     valueInLocalCurrency: number
     merchantSystemID: string
-    split?: ISplit
+    splits?: ISplit[]
 }
 
 export interface IGetNewAddressBody {

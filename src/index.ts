@@ -9,6 +9,7 @@ import {
     IGetTransactionsBody,
     ITransaction,
     IGetTransactionInformationResponse,
+    ISplit,
 } from './interfaces'
 import { ENDPOINT } from './constants'
 
@@ -50,10 +51,21 @@ const getTransaction = (t: IGetTransactionsBody): ITransaction => ({
     status: t.Status,
 })
 
-const getNewAddress = async (
-    data: IGetNewAddressData,
-): Promise<AxiosResponse<IGetNewAddressResponse>> => {
+const getNewAddress = async ({
+    splits,
+    ...rest
+}: IGetNewAddressData): Promise<AxiosResponse<IGetNewAddressResponse>> => {
     try {
+        const data = {
+            ...rest,
+            split: splits
+                ? splits.map((s: ISplit) => ({
+                      MarketPlaceToken: s.marketPlaceToken,
+                      PercentOf: s.marketPlaceToken,
+                  }))
+                : [],
+        }
+
         return api.post(ENDPOINT.GETNEWADDRESS, data)
     } catch (err) {
         throw err
