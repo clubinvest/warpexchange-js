@@ -9,9 +9,13 @@ export interface ISplit {
     percentOf: number
 }
 
-export interface IGetNewAddressParams {
+export interface IGetNewAddressData {
     network: string
     valueInLocalCurrency: number
     merchantSystemID: string
     split?: ISplit
+}
+
+export interface IGetTransactionInformationData {
+    merchantSystemID: string
 }
