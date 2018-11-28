@@ -64,7 +64,10 @@ const getTransactionInformation = async (
     data: IGetTransactionInformationData,
 ): Promise<AxiosResponse<IGetTransactionInformationResponse>> => {
     try {
-        const response = await api.post(ENDPOINT.GETNEWADDRESS, data)
+        const response = await api.post(
+            ENDPOINT.GETTRANSACTIONINFORMATION,
+            data,
+        )
 
         return {
             ...response,

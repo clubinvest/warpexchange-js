@@ -69,10 +69,8 @@
     "tabWidth": 4,
     "trailingComma": "all"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/warp-exchange/rest-api.git"
-  },
+  "private": false,
+  "repository": "git+https://github.com/warp-exchange/rest-api.git",
   "scripts": {
     "build": "yarn audit && tsc",
     "jest:watch": "jest --watch",
