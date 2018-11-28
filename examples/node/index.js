@@ -1,6 +1,14 @@
-const WarpExchange = require('warpexchange')
+const WarpExchange = require('../../dist/index')
 
-const warpexchange = WarpExchange({ token })
+const warpexchange = WarpExchange({
+    token: 'YOUR_TOKEN',
+})
+;(async () => {
+    const newAddressResponse = await warpexchange.getNewAddress({
+        merchantSystemID: '1',
+        network: 'TESTNET',
+        valueInLocalCurrency: 500.0,
+    })
 
-// Using convertSatoshiToBTC
-console.log(warpexchange.convertSatoshiToBTC(0.00123123123))
+    console.log('HUDSAHUDAHSUD', newAddressResponse.data)
+})()
