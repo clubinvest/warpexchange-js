@@ -10,7 +10,7 @@
     "axios": "0.18.0"
   },
   "devDependencies": {
-    "@types/axios": "0.14.0",
+    "@types/axios": "^0.14.0",
     "@types/jest": "23.3.10",
     "@types/node": "10.12.10",
     "husky": "1.2.0",
