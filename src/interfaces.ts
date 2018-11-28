@@ -1,9 +1,6 @@
 export interface IConfig {
     token: string
 }
-
-export interface IGetNewAddress {}
-
 export interface ISplit {
     marketPlaceToken: string
     percentOf: number
