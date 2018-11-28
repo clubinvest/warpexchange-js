@@ -26,10 +26,7 @@ export interface IGetNewAddressResponse {
     body: IGetNewAddressBody
 }
 
-export interface IGetTransactionInformationData {
-    merchantSystemID: string
-}
-export interface IGetTransactionInformationBody {
+export interface IGetTransactionsBody {
     TipoMoeda: string
     MerchantSystemID: string
     EnderecoDoCliente: null
@@ -44,7 +41,31 @@ export interface IGetTransactionInformationBody {
     Status: string
 }
 
+export interface ITransaction {
+    typeCurrency: string
+    merchantSystemId: string
+    customerAddress: null
+    dateReceive: null
+    valueRequiredInCurrencyLocal: string
+    notified: Boolean
+    miningFeeSubmitted: null
+    hashTransaction: null
+    ValueReceivedInDigital: null
+    ValueRequestInDigital: string
+    statusId: number
+    status: string
+}
+
+export interface IGetTransactionsResponse {
+    statusCode: number
+    body: ITransaction[]
+}
+
+export interface IGetTransactionInformationData {
+    merchantSystemID: string
+}
+
 export interface IGetTransactionInformationResponse {
     statusCode: number
-    body: IGetTransactionInformationBody[]
+    body: ITransaction
 }
